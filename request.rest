@@ -1,0 +1,18 @@
+GET http://localhost:3100/api/users/1
+
+
+###
+POST http://localhost:3100/api/users
+Content-Type: application/json
+
+{
+"first_name":"Test2",
+"last_name":"Testons",
+"passport":"1234",
+"email":"test5@gmail.com",
+"phone":"555444333",
+"password":"1234",
+"access_level":"user",
+"membership":"wooden",
+"bookings":""
+}

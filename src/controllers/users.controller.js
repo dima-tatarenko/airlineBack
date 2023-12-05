@@ -1,26 +1,38 @@
 const UserModel = require('../models/user.model')
 
-const getById = (req,res) => {
-    res.end('Meow')
+const getById = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        console.log(userId)
+
+        const [result] = await UserModel.selectById(Number(userId))
+        if (result.length === 0) return res.json({ error: "This user doesn't exist." })
+
+        // const [user] = result
+        // There's only one item in this array, therefore we can simply access the first position and retrieve the user.
+
+        console.log('Meow. You found a user. Why you snoopin\' around?')
+        console.log(result[0])
+        res.json(result[0])
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
 }
 
-const createUser = async (req,res) => {
+const createUser = async (req, res) => {
     try {
         const [result] = await UserModel.insertUser(req.body)
-        // Need get by ID to get client data and show it once a client has been created!
-        // stopped to commit
+        const [user] = await UserModel.selectById(result.insertId)
 
-        res.json(client[0])
-    } catch(error) {
-
+        console.log('Meow. You created a user.')
+        console.log(user[0])
+        res.json(user[0])
+    } catch (error) {
+        res.json({ error: error.message })
     }
-    
-
-
-
-    res.end('A user was created.')
 }
 
 
 
-module.exports = {getById, createUser}
+module.exports = { getById, createUser }

@@ -6,7 +6,7 @@ const usersCtrl = require('../../controllers/users.controller')
 
 
 // Get
-router.get('/userId', usersCtrl.getById)
+router.get('/:userId', usersCtrl.getById)
 
 // Post
 router.post('/', usersCtrl.createUser)

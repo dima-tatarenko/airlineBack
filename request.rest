@@ -1,3 +1,4 @@
+### USERS
 GET http://localhost:3100/api/users/1
 
 
@@ -15,4 +16,28 @@ Content-Type: application/json
 "access_level":"user",
 "membership":"wooden",
 "bookings":""
+}
+
+
+### FLIGHTS
+GET http://localhost:3100/api/flights/2
+
+
+###
+POST http://localhost:3100/api/flights
+Content-Type: application/json
+
+{
+"origin_id": 1,
+"destination_id": 2,
+"departure": "2023-01-15",
+"arrival": "2023-01-15",
+"duration": 2,
+"domestic": true,
+"price": 500,
+"seat": 1,
+"max_luggage": 300,
+"terminal": "",
+"gate": "",
+"img": ""
 }

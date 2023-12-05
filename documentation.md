@@ -14,11 +14,18 @@ SECRET_KEY="free bird"
 ------------------------------------------------
 
 
+------------------------------------------------
+USER INTERACTIONS
+
+
+A user can be retrieved by ID with:
+
+GET http://localhost:3100/api/users/1
 
 A user can be added by using:
 
-POST
-http://localhost:3100/api/users
+
+POST http://localhost:3100/api/users
 
 The JSON (body) provided must follow this structure. Email parameter must be unique!
 
@@ -26,7 +33,7 @@ The JSON (body) provided must follow this structure. Email parameter must be uni
 "first_name":"Test2",
 "last_name":"Testons",
 "passport":"1234",
-"email":"test2@gmail.com",
+"email":"test5@gmail.com",
 "phone":"555444333",
 "password":"1234",
 "access_level":"user",
@@ -34,3 +41,4 @@ The JSON (body) provided must follow this structure. Email parameter must be uni
 "bookings":""
 }
 
+------------------------------------------------

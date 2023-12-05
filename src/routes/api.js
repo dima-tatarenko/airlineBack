@@ -5,10 +5,18 @@ const router = require('express').Router()
 //ADD MIDDLEWARES!
 
 
+// USERS
 router.use('/users', require('./api/users'))
 
 
-// Pending -> flights, airports
+// FLIGHTS
+router.use('/flights', require('./api/flights'))
+
+
+
+// AIRPORTS
+
+
 
 
 

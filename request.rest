@@ -41,3 +41,122 @@ Content-Type: application/json
 "gate": "",
 "img": ""
 }
+
+
+### AIRPORTS
+GET http://localhost:3100/api/airports/2
+
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+"name": "John F. Kennedy International Airport",
+"name_acr": "JFK",
+"city": "New York City",
+"city_acr": "NYC",
+"country": "United States",
+"country_acr": "US",
+"terminals": "6",
+"gates": "128",
+"img": "https://nyartlife.com/wp-content/uploads/2022/06/jfk-jpg.jpg"
+}
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+  {
+    "name": "Suvarnabhumi Airport",
+    "name_acr": "BKK",
+    "city": "Bangkok",
+    "city_acr": "BKK",
+    "country": "Thailand",
+    "country_acr": "TH",
+    "terminals": 2,
+    "gates": 120,
+    "img": "https://example.com/suvarnabhumi_airport_image.jpg"
+  }
+
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+    "name": "León Airport",
+    "name_acr": "LEN",
+    "city": "León",
+    "city_acr": "LEN",
+    "country": "Spain",
+    "country_acr": "ES",
+    "terminals": 1,
+    "gates": 5,
+    "img": "https://example.com/leon_airport_image.jpg"
+}
+
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+[
+  {
+    "name": "Suvarnabhumi Airport",
+    "name_acr": "BKK",
+    "city": "Bangkok",
+    "city_acr": "BKK",
+    "country": "Thailand",
+    "country_acr": "TH",
+    "terminals": 2,
+    "gates": 120,
+    "img": "https://example.com/suvarnabhumi_airport_image.jpg"
+  },
+  {
+    "name": "Dubai International Airport",
+    "name_acr": "DXB",
+    "city": "Dubai",
+    "city_acr": "DXB",
+    "country": "United Arab Emirates",
+    "country_acr": "AE",
+    "terminals": 3,
+    "gates": 200,
+    "img": "https://example.com/dubai_airport_image.jpg"
+  },
+  {
+    "name": "Los Angeles International Airport",
+    "name_acr": "LAX",
+    "city": "Los Angeles",
+    "city_acr": "LAX",
+    "country": "United States",
+    "country_acr": "US",
+    "terminals": 9,
+    "gates": 130,
+    "img": "https://example.com/lax_airport_image.jpg"
+  },
+  {
+    "name": "Heathrow Airport",
+    "name_acr": "LHR",
+    "city": "London",
+    "city_acr": "LON",
+    "country": "United Kingdom",
+    "country_acr": "UK",
+    "terminals": 5,
+    "gates": 120,
+    "img": "https://example.com/heathrow_airport_image.jpg"
+  },
+  {
+    "name": "Tokyo Haneda Airport",
+    "name_acr": "HND",
+    "city": "Tokyo",
+    "city_acr": "TYO",
+    "country": "Japan",
+    "country_acr": "JP",
+    "terminals": 4,
+    "gates": 115,
+    "img": "https://example.com/haneda_airport_image.jpg"
+  }
+]
+
+

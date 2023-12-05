@@ -15,7 +15,7 @@ router.use('/flights', require('./api/flights'))
 
 
 // AIRPORTS
-
+router.use('/airports', require('./api/airports'))
 
 
 

@@ -14,6 +14,37 @@ const getById = async (req, res) => {
     }
 }
 
+
+const getFullSearch = async (req, res) => {
+    try {
+        console.log(req.body)
+        const { origin_id, destination_id } = req.body;
+
+        const [result] = await FlightModel.selectByCities(Number(origin_id), Number(destination_id))
+        // if (result.length === 0) return res.json({ error: "This flight doesn't exist." })
+
+        res.json(result)
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
+
+
+// const getByCities = async (req, res) => {
+//     try {
+//         const { originId, destinationId } = req.params;
+
+//         const [result] = await FlightModel.selectByCities(Number(originId), Number(destinationId))
+//         // if (result.length === 0) return res.json({ error: "This flight doesn't exist." })
+
+//         res.json(result)
+
+//     } catch (error) {
+//         res.json({ error: error.message })
+//     }
+// }
+
 const createFlight = async (req, res) => {
     try {
         const [result] = await FlightModel.insertFlight(req.body)
@@ -27,4 +58,4 @@ const createFlight = async (req, res) => {
 
 
 
-module.exports = { getById, createFlight }
+module.exports = { getById, createFlight, getFullSearch }

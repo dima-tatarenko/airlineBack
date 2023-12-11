@@ -8,8 +8,10 @@ const flightsCtrl = require('../../controllers/flights.controller')
 // Get
 router.get('/:flightId', flightsCtrl.getById)
 
+
 // Post
 router.post('/', flightsCtrl.createFlight)
+router.post('/search', flightsCtrl.getFullSearch)
 
 
 module.exports = router

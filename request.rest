@@ -51,6 +51,15 @@ Content-Type: application/json
 ### FLIGHTS
 GET http://localhost:3100/api/flights/2
 
+### FLIGHT BY CITY COMBO / Works, but not through request.rest!
+POST http://localhost:3100/api/flights/search
+
+{
+"origin_id": 1,
+"destination_id": 3,
+"departure": "2023-01-15",
+"arrival": "2023-01-15"
+}
 
 ###
 POST http://localhost:3100/api/flights
@@ -62,11 +71,11 @@ Content-Type: application/json
 "departure": "2023-01-15",
 "arrival": "2023-01-15",
 "duration": 2,
-"price": 500,
+"price": 200,
 "available_seats": 50,
 "available_luggage": 300,
-"terminal": 1,
-"gate": 5,
+"terminal": 2,
+"gate": 3,
 "img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
 }
 

@@ -28,9 +28,9 @@ const getById = async (req, res) => {
 const getFullSearch = async (req, res) => {
     try {
         console.log(req.body)
-        const { origin_id, destination_id } = req.body;
+        const { origin_id, destination_id, departure } = req.body;
 
-        const [result] = await FlightModel.selectByCities(Number(origin_id), Number(destination_id))
+        const [result] = await FlightModel.selectFullSearch(Number(origin_id), Number(destination_id), departure)
         // if (result.length === 0) return res.json({ error: "This flight doesn't exist." })
 
         res.json(result)

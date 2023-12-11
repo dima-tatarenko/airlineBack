@@ -6,11 +6,11 @@ const selectById = (flightId) => {
     return db.query('select * from flights where flights.id = ?;', [flightId])
 }
 
-const selectByCities = (origin_id, destination_id) => {
-    return db.query('select f.*, a.* from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ?', [origin_id, destination_id])
+const selectFullSearch = (origin_id, destination_id, departure) => {
+    return db.query('select f.*, a.* from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ? and f.departure >= ?;', [origin_id, destination_id, departure])
 }
 
-const selectFullSearch = (origin_id, destination_id, departure, arrival) => {
+const selectByCities = (origin_id, destination_id) => {
     return db.query('select f.*, a.* from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ?', [origin_id, destination_id])
 }
 
@@ -21,6 +21,6 @@ const insertFlight = ({ origin_id, destination_id, departure, arrival, duration,
 
 
 
-module.exports = { selectAll, selectById, insertFlight, selectByCities }
+module.exports = { selectAll, selectById, selectFullSearch, selectByCities, insertFlight }
 
 

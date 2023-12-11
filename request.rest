@@ -64,8 +64,7 @@ POST http://localhost:3100/api/flights/search
 {
 "origin_id": 1,
 "destination_id": 3,
-"departure": "2023-01-15",
-"arrival": "2023-01-15"
+"departure": "2023-01-15"
 }
 
 ###
@@ -75,8 +74,8 @@ Content-Type: application/json
 {
 "origin_id": 1,
 "destination_id": 3,
-"departure": "2023-01-15",
-"arrival": "2023-01-15",
+"departure": "2023-12-15",
+"arrival": "2023-12-15",
 "duration": 2,
 "price": 200,
 "available_seats": 50,
@@ -111,8 +110,8 @@ Content-Type: application/json
 {
 "origin_id": 3,
 "destination_id": 1,
-"departure": "2023-01-15",
-"arrival": "2023-01-15",
+"departure": "2022-01-15",
+"arrival": "2022-01-15",
 "duration": 2,
 "price": 500,
 "available_seats": 50,

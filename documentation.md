@@ -68,8 +68,7 @@ POST http://localhost:3100/api/flights/search
 {
 "origin_id": 1,
 "destination_id": 3,
-"departure": "2023-01-15",
-"arrival": "2023-01-15"
+"departure": "2023-01-15"
 }
 
 ### Create a new flight

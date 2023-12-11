@@ -1,3 +1,7 @@
+const selectAll = () => {
+    return db.query('select * from airports')
+}
+
 const selectById = (airportId) => {
     return db.query('select * from airports where airports.id = ?;', [airportId])
 }
@@ -8,7 +12,7 @@ const insertAirport = ({ name, name_acr, city, city_acr, country, country_acr, t
 }
 
 
-module.exports = { selectById, insertAirport }
+module.exports = { selectById, insertAirport, selectAll }
 
 
 // INTERFACE (IAirport)

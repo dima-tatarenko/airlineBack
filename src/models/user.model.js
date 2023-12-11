@@ -2,8 +2,8 @@ const selectById = (userId) => {
     return db.query('select * from users where users.id = ?;', [userId])
 }
 
-const insertUser = ({ first_name, last_name, email, password, access_level, passport, membership, bookings, phone }) => {
-    return db.query('insert into users (first_name, last_name, email, password, access_level, passport,membership,bookings,phone) values (?,?,?,?,?,?,?,?,?)', [first_name, last_name, email, password, access_level, passport, membership, bookings, phone])
+const insertUser = ({ first_name, last_name, email, password, access_level, passport, membership, phone }) => {
+    return db.query('insert into users (first_name, last_name, email, password, access_level, passport,membership,phone) values (?,?,?,?,?,?,?,?)', [first_name, last_name, email, password, access_level, passport, membership, phone])
 }
 
 
@@ -20,5 +20,4 @@ module.exports = { selectById, insertUser }
 // phone: number,
 // password: string,
 // access_level: string,
-// membership: string,
-// bookings: IBooking[]
+// membership: string

@@ -1,5 +1,5 @@
 ### USERS
-GET http://localhost:3100/api/users/1
+GET http://localhost:3100/api/users/6
 
 
 ###
@@ -7,15 +7,44 @@ POST http://localhost:3100/api/users
 Content-Type: application/json
 
 {
-"first_name":"Test2",
-"last_name":"Testons",
-"passport":"1234",
-"email":"test5@gmail.com",
+"first_name":"Test1",
+"last_name":"Testons1",
+"passport":"1234A",
+"email":"test1@gmail.com",
 "phone":"555444333",
 "password":"1234",
 "access_level":"user",
-"membership":"wooden",
-"bookings":""
+"membership":"wooden"
+}
+
+###
+POST http://localhost:3100/api/users
+Content-Type: application/json
+
+{
+"first_name":"Test2",
+"last_name":"Testons2",
+"passport":"1234B",
+"email":"test2@gmail.com",
+"phone":"555444333",
+"password":"1234",
+"access_level":"user",
+"membership":"wooden"
+}
+
+###
+POST http://localhost:3100/api/users
+Content-Type: application/json
+
+{
+"first_name":"Test3",
+"last_name":"Testons3",
+"passport":"1234C",
+"email":"test3@gmail.com",
+"phone":"555444333",
+"password":"1234",
+"access_level":"user",
+"membership":"wooden"
 }
 
 
@@ -29,18 +58,55 @@ Content-Type: application/json
 
 {
 "origin_id": 1,
+"destination_id": 3,
+"departure": "2023-01-15",
+"arrival": "2023-01-15",
+"duration": 2,
+"price": 500,
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 1,
+"gate": 5,
+"img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
+}
+
+###
+POST http://localhost:3100/api/flights
+Content-Type: application/json
+
+{
+"origin_id": 3,
 "destination_id": 2,
 "departure": "2023-01-15",
 "arrival": "2023-01-15",
 "duration": 2,
-"domestic": true,
 "price": 500,
-"seat": 1,
-"max_luggage": 300,
-"terminal": "",
-"gate": "",
-"img": ""
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 1,
+"gate": 7,
+"img": "https://static.theceomagazine.net/wp-content/uploads/2023/06/26102050/48-hours-in-Bangkok1.jpg"
 }
+
+###
+POST http://localhost:3100/api/flights
+Content-Type: application/json
+
+{
+"origin_id": 3,
+"destination_id": 1,
+"departure": "2023-01-15",
+"arrival": "2023-01-15",
+"duration": 2,
+"price": 500,
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 1,
+"gate": 7,
+"img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
+}
+
+
 
 
 ### AIRPORTS
@@ -76,7 +142,7 @@ Content-Type: application/json
     "country_acr": "TH",
     "terminals": 2,
     "gates": 120,
-    "img": "https://example.com/suvarnabhumi_airport_image.jpg"
+    "img": "https://www.airport-technology.com/wp-content/uploads/sites/14/2002/09/Featured_Image_-_Suvarnabhumi_Airport_Thailand1.jpg"
   }
 
 
@@ -93,8 +159,25 @@ Content-Type: application/json
     "country_acr": "ES",
     "terminals": 1,
     "gates": 5,
-    "img": "https://example.com/leon_airport_image.jpg"
+    "img": "https://www.airports-worldwide.com/img/spain/leon_spain_02.jpg"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ###

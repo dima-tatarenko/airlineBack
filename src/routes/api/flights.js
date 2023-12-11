@@ -6,6 +6,7 @@ const flightsCtrl = require('../../controllers/flights.controller')
 
 
 // Get
+router.get('/', flightsCtrl.getAll)
 router.get('/:flightId', flightsCtrl.getById)
 
 

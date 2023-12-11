@@ -6,6 +6,7 @@ const airportsCtrl = require('../../controllers/airports.controller')
 
 
 // Get
+router.get('/', airportsCtrl.getAll)
 router.get('/:airportId', airportsCtrl.getById)
 
 // Post

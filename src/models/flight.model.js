@@ -1,3 +1,7 @@
+const selectAll = () => {
+    return db.query('select * from flights order by flights.id desc;')
+}
+
 const selectById = (flightId) => {
     return db.query('select * from flights where flights.id = ?;', [flightId])
 }
@@ -17,6 +21,6 @@ const insertFlight = ({ origin_id, destination_id, departure, arrival, duration,
 
 
 
-module.exports = { selectById, insertFlight, selectByCities }
+module.exports = { selectAll, selectById, insertFlight, selectByCities }
 
 

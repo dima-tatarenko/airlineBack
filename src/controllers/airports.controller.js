@@ -3,11 +3,9 @@ const AirportModel = require('../models/airport.model')
 const getAll = async (req, res) => {
     try {
         const [result] = await AirportModel.selectAll()
-
-        console.log(result)
         res.json(result)
     } catch (error) {
-
+        res.json({ error: error.message })
     }
 }
 

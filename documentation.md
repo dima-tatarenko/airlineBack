@@ -42,3 +42,84 @@ The JSON (body) provided must follow this structure. Email parameter must be uni
 }
 
 ------------------------------------------------
+
+FLIGHT INTERACTIONS
+
+ROUTE LIST
+
+// Get
+GET ALL - GET http://localhost:3100/api/flights/flightID
+GET BY ID - GET http://localhost:3100/api/flights
+
+// Post
+ADD A FLIGHT - POST http://localhost:3100/api/flights
+SEARCH BY ORIGIN|DESTINATION|DATES - POST http://localhost:3100/api/flights/search
+
+REQUEST.REST Examples
+### Get by ID
+GET http://localhost:3100/api/flights/2
+
+### Get all
+GET http://localhost:3100/api/flights
+
+### Full search / Tested with Thunder client!
+POST http://localhost:3100/api/flights/search
+
+{
+"origin_id": 1,
+"destination_id": 3,
+"departure": "2023-01-15",
+"arrival": "2023-01-15"
+}
+
+### Create a new flight
+POST http://localhost:3100/api/flights
+Content-Type: application/json
+
+{
+"origin_id": 1,
+"destination_id": 3,
+"departure": "2023-01-15",
+"arrival": "2023-01-15",
+"duration": 2,
+"price": 200,
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 2,
+"gate": 3,
+"img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
+}
+
+
+AIRPORT INTERACTIONS
+
+ROUTE LIST
+
+// Get
+GET ALL - GET http://localhost:3100/api/airports
+GET BY ID - GET http://localhost:3100/api/airports/airportID
+
+// Post
+ADD AN AIRPORT - POST http://localhost:3100/api/airports
+
+### Get all
+GET http://localhost:3100/api/airports
+
+### Get By ID
+GET http://localhost:3100/api/airports/2
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+"name": "John F. Kennedy International Airport",
+"name_acr": "JFK",
+"city": "New York City",
+"city_acr": "NYC",
+"country": "United States",
+"country_acr": "US",
+"terminals": "6",
+"gates": "128",
+"img": "https://nyartlife.com/wp-content/uploads/2022/06/jfk-jpg.jpg"
+}

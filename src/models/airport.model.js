@@ -1,5 +1,5 @@
 const selectAll = () => {
-    return db.query('select * from airports')
+    return db.query('select * from airlines_db.airports order by airports.id desc;')
 }
 
 const selectById = (airportId) => {

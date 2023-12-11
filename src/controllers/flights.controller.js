@@ -1,5 +1,15 @@
 const FlightModel = require('../models/flight.model')
 
+const getAll = async (req, res) => {
+    try {
+        const [result] = await FlightModel.selectAll()
+
+        res.json(result)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
+
 const getById = async (req, res) => {
     try {
         const { flightId } = req.params;
@@ -58,4 +68,4 @@ const createFlight = async (req, res) => {
 
 
 
-module.exports = { getById, createFlight, getFullSearch }
+module.exports = { getAll, getById, createFlight, getFullSearch }

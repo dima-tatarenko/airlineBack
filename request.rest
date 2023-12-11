@@ -48,10 +48,17 @@ Content-Type: application/json
 }
 
 
-### FLIGHTS
+
+### Flights
+
+### Get all
+GET http://localhost:3100/api/flights
+
+### Get by ID
 GET http://localhost:3100/api/flights/2
 
-### FLIGHT BY CITY COMBO / Works, but not through request.rest!
+
+### Full search / Works, but not through request.rest!
 POST http://localhost:3100/api/flights/search
 
 {
@@ -119,6 +126,11 @@ Content-Type: application/json
 
 
 ### AIRPORTS
+
+### Get all
+GET http://localhost:3100/api/airports
+
+### Get By ID
 GET http://localhost:3100/api/airports/2
 
 

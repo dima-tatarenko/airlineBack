@@ -1,5 +1,5 @@
 // External imps
-
+const bcrypt = require('bcryptjs')
 
 // Internal imps
 const UserModel = require('../models/user.model')
@@ -26,11 +26,12 @@ const getById = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
+        // Number 5 for hashSync is how strong encription is and was set low for testing purposes.
+        req.body.password = bcrypt.hashSync(req.body.password, 5)
+
         const [result] = await UserModel.insertUser(req.body)
         const [user] = await UserModel.selectById(result.insertId)
 
-        console.log('Meow. You created a user.')
-        console.log(user[0])
         res.json(user[0])
     } catch (error) {
         res.json({ error: error.message })
@@ -51,7 +52,7 @@ const login = async (req, res) => {
         const user = result[0]
 
         // Check if passwords match
-        if (password !== user.password) {
+        if (!bcrypt.compareSync(password, user.password)) {
             return res.json({ error: 'Username and password don\'t match' })
         }
 
@@ -61,10 +62,7 @@ const login = async (req, res) => {
         })
 
 
-        //Check if passwords match
-        // if (!bcrypt.compareSync(password, staff.password)) {
-        //     return res.json({ fatal: 'Username and password don\'t match' })
-        // }
+
 
 
     } catch (error) {

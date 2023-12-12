@@ -9,7 +9,7 @@ Content-Type: application/json
 {
 "first_name":"Test1",
 "last_name":"Testons1",
-"passport":"1234A",
+"passport":"ASDFC1",
 "email":"test1@gmail.com",
 "phone":"555444333",
 "password":"1234",
@@ -24,7 +24,7 @@ Content-Type: application/json
 {
 "first_name":"Test2",
 "last_name":"Testons2",
-"passport":"1234B",
+"passport":"ASDFC2",
 "email":"test2@gmail.com",
 "phone":"555444333",
 "password":"1234",
@@ -38,9 +38,9 @@ Content-Type: application/json
 
 {
 "first_name":"Test3",
-"last_name":"Testons3",
-"passport":"1234C",
 "email":"test3@gmail.com",
+"passport":"ASDFC3",
+"last_name":"Testons3",
 "phone":"555444333",
 "password":"1234",
 "access_level":"user",

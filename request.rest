@@ -49,7 +49,19 @@ Content-Type: application/json
 
 
 
-###
+### Log in as regular user
+### TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJhY2Nlc3NfbGV2ZWwiOiJ1c2VyIiwiZXhwIjoxNzY1NTYzODU1LCJpYXQiOjE3MDI0MDU0NTV9.u1cSlMexpbWluqMaDJGKIE4e-U1K0Hgmsn-FCuLCppg
+POST http://localhost:3100/api/users/login
+Content-Type: application/json
+
+{
+"email":"test2@gmail.com",
+"password":"1234"
+}
+
+
+### Log in as admin
+### TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 POST http://localhost:3100/api/users/login
 Content-Type: application/json
 
@@ -100,11 +112,12 @@ Content-Type: application/json
 ###
 POST http://localhost:3100/api/flights
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJhY2Nlc3NfbGV2ZWwiOiJ1c2VyIiwiZXhwIjoxNzY1NTYzODU1LCJpYXQiOjE3MDI0MDU0NTV9.u1cSlMexpbWluqMaDJGKIE4e-U1K0Hgmsn-FCuLCppg
 
 {
-"origin_id": 5,
-"destination_id": 6,
-"destination_city":"London",
+"origin_id": 1,
+"destination_id": 4,
+"destination_city":"Paris",
 "departure": "2023-01-15",
 "arrival": "2023-01-15",
 "duration": 2,
@@ -116,16 +129,17 @@ Content-Type: application/json
 "img": "https://static.theceomagazine.net/wp-content/uploads/2023/06/26102050/48-hours-in-Bangkok1.jpg"
 }
 
-###
+### CREATE AS ADMIN
 POST http://localhost:3100/api/flights
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
 {
-"origin_id": 5,
-"destination_id": 7,
+"origin_id": 7,
+"destination_id": 6,
 "destination_city": "London",
-"departure": "2022-01-15",
-"arrival": "2022-01-15",
+"departure": "2024-02-15",
+"arrival": "2024-02-15",
 "duration": 2,
 "price": 500,
 "available_seats": 50,
@@ -180,21 +194,22 @@ Content-Type: application/json
   }
 
 
-###
+### CREATE AS ADMIN
 POST http://localhost:3100/api/airports
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
 {
-    "name": "León Airport",
-    "name_acr": "LEN",
-    "city": "León",
-    "city_acr": "LEN",
-    "country": "Spain",
-    "country_acr": "ES",
-    "terminals": 1,
-    "gates": 5,
-    "img": "https://www.airports-worldwide.com/img/spain/leon_spain_02.jpg"
-}
+  "name": "Los Angeles International Airport",
+  "name_acr": "LAX",
+  "city": "Los Angeles",
+  "city_acr": "LAX",
+  "country": "United States",
+  "country_acr": "US",
+  "terminals": 9,
+  "gates": 130,
+  "img": "https://example.com/lax_airport_image.jpg"
+  }
 
 
 

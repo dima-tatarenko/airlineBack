@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 
 const createToken = (user) => {
     const payload = {
-        user_id: user.user_id,
-        user_role: user.user_role,
-        exp: dayjs().add(2, 'minutes').unix()
+        user_id: user.id,
+        access_level: user.access_level,
+        exp: dayjs().add(2, 'years').unix()
     }
     return jwt.sign(payload, process.env.SECRET_KEY)
 }

@@ -3,6 +3,7 @@ const router = require('express').Router()
 
 // Internal imps
 const flightsCtrl = require('../../controllers/flights.controller')
+const { checkToken, checkAdmin } = require('../../helpers/middlewares')
 
 
 // Get
@@ -11,7 +12,7 @@ router.get('/:flightId', flightsCtrl.getById)
 
 
 // Post
-router.post('/', flightsCtrl.createFlight)
+router.post('/', checkToken, checkAdmin, flightsCtrl.createFlight)
 router.post('/search', flightsCtrl.getFullSearch)
 
 

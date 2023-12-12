@@ -72,8 +72,9 @@ POST http://localhost:3100/api/flights
 Content-Type: application/json
 
 {
-"origin_id": 1,
-"destination_id": 3,
+"origin_id": 4,
+"destination_id": 7,
+"destination_city": "London",
 "departure": "2023-12-15",
 "arrival": "2023-12-15",
 "duration": 2,
@@ -90,8 +91,9 @@ POST http://localhost:3100/api/flights
 Content-Type: application/json
 
 {
-"origin_id": 3,
-"destination_id": 2,
+"origin_id": 5,
+"destination_id": 6,
+"destination_city":"London",
 "departure": "2023-01-15",
 "arrival": "2023-01-15",
 "duration": 2,
@@ -108,7 +110,7 @@ POST http://localhost:3100/api/flights
 Content-Type: application/json
 
 {
-"origin_id": 3,
+"origin_id": 2,
 "destination_id": 1,
 "departure": "2022-01-15",
 "arrival": "2022-01-15",
@@ -180,6 +182,74 @@ Content-Type: application/json
     "terminals": 1,
     "gates": 5,
     "img": "https://www.airports-worldwide.com/img/spain/leon_spain_02.jpg"
+}
+
+
+
+
+### TESTING cities with more than one airport
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+  "name": "Charles de Gaulle Airport",
+  "name_acr": "CDG",
+  "city": "Paris",
+  "city_acr": "PAR",
+  "country": "France",
+  "country_acr": "FR",
+  "terminals": "3",
+  "gates": "176",
+  "img": "https://s28477.pcdn.co/wp-content/uploads/2017/10/CDG_4-984x554.jpg"
+}
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+  "name": "Orly Airport",
+  "name_acr": "ORY",
+  "city": "Paris",
+  "city_acr": "PAR",
+  "country": "France",
+  "country_acr": "FR",
+  "terminals": "4",
+  "gates": "80",
+  "img": "https://www.pariste.net/wp-content/uploads/2014/04/Paris-Orly-Havaalani-Pariste.Net-11.jpg"
+}
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+  "name": "Heathrow Airport",
+  "name_acr": "LHR",
+  "city": "London",
+  "city_acr": "LON",
+  "country": "United Kingdom",
+  "country_acr": "UK",
+  "terminals": "5",
+  "gates": "146",
+  "img": "https://www.heathrow.com/-/media/heathrow/home/image-carousel/full-width-carousel/h1/july-2021/1920x750-01.jpg"
+}
+
+###
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+  "name": "Gatwick Airport",
+  "name_acr": "LGW",
+  "city": "London",
+  "city_acr": "LON",
+  "country": "United Kingdom",
+  "country_acr": "UK",
+  "terminals": "2",
+  "gates": "123",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gatwick_Airport_2018.jpg/1920px-Gatwick_Airport_2018.jpg"
 }
 
 

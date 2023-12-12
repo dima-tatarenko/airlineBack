@@ -31,13 +31,26 @@ const getFullSearch = async (req, res) => {
 
         let originArr = origin.split('-')
         let destinationArr = destination.split('-')
-        origin_acr = originArr[1]
-        destination_acr = destinationArr[1]
-        origin_city = originArr[0]
-        destination_city = destinationArr[0]
-        console.log(originArr[0])
+        let origin_acr = originArr[1]
+        let destination_acr = destinationArr[1]
+        let origin_city = originArr[0]
+        let destination_city = destinationArr[0]
 
+        if (origin_acr !== "All" && destination_acr === "All") {
+            const [origin_airport] = await AirportModel.selectByAcr(origin_acr)
+            const origin_id = origin_airport[0].id
+            const [result] = await FlightModel.selectOneToAll(Number(origin_id), destination_city, departure)
 
+            return res.json(result)
+        }
+
+        if (origin_acr === "All" && destination_acr !== "All") {
+            const [destination_airport] = await AirportModel.selectByAcr(destination_acr)
+            const destination_id = destination_airport[0].id
+            const [result] = await FlightModel.selectAllToOne(origin_city, Number(destination_id), departure)
+
+            return res.json(result)
+        }
 
         if (origin_acr !== "All") {
             const [origin_airport] = await AirportModel.selectByAcr(origin_acr)
@@ -45,22 +58,12 @@ const getFullSearch = async (req, res) => {
             const [destination_airport] = await AirportModel.selectByAcr(destination_acr)
             const destination_id = destination_airport[0].id
 
-            const [result] = await FlightModel.selectFullSearch(Number(origin_id), Number(destination_id), departure)
+            const [result] = await FlightModel.selectOneToOne(Number(origin_id), Number(destination_id), departure)
 
             return res.json(result)
         }
 
-        // if (origin_acr === "All" && destination_acr !== "All") {
-        //     const [destination_airport] = await AirportModel.selectByAcr(destination_acr)
-        //     const destination_id = destination_airport[0].id
-        //     const [result] = await FlightModel.selectAllToOne(origin_city, Number(destination_id), departure)
-
-        //     return res.json(result)
-        // }
-
-
-
-        const [result] = await FlightModel.selectCitySearch(origin_city, destination_city, departure)
+        const [result] = await FlightModel.selectAllToAll(origin_city, destination_city, departure)
         res.json(result)
 
     } catch (error) {

@@ -264,7 +264,37 @@ Content-Type: application/json
   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gatwick_Airport_2018.jpg/1920px-Gatwick_Airport_2018.jpg"
 }
 
+### All airports - London, UK
+POST http://localhost:3100/api/airports
+Content-Type: application/json
 
+{
+  "name": "All",
+  "name_acr": "All",
+  "city": "London",
+  "city_acr": "LON",
+  "country": "United Kingdom",
+  "country_acr": "UK",
+  "terminals": 0,
+  "gates": 0,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gatwick_Airport_2018.jpg/1920px-Gatwick_Airport_2018.jpg"
+}
+
+### All airports - Paris, France
+POST http://localhost:3100/api/airports
+Content-Type: application/json
+
+{
+  "name": "All",
+  "name_acr": "All",
+  "city": "Paris",
+  "city_acr": "PAR",
+  "country": "France",
+  "country_acr": "FR",
+  "terminals": "4",
+  "gates": "80",
+  "img": "https://www.pariste.net/wp-content/uploads/2014/04/Paris-Orly-Havaalani-Pariste.Net-11.jpg"
+}
 
 
 

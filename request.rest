@@ -121,8 +121,9 @@ POST http://localhost:3100/api/flights
 Content-Type: application/json
 
 {
-"origin_id": 2,
-"destination_id": 1,
+"origin_id": 5,
+"destination_id": 7,
+"destination_city": "London",
 "departure": "2022-01-15",
 "arrival": "2022-01-15",
 "duration": 2,

@@ -10,6 +10,7 @@ router.get('/:userId', usersCtrl.getById)
 
 // Post
 router.post('/', usersCtrl.createUser)
+router.post('/login', usersCtrl.login)
 
 
 module.exports = router

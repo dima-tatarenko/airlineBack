@@ -54,6 +54,7 @@ const getFullSearch = async (req, res) => {
             arrResults.push(returnFlight)
 
             res.json(arrResults)
+            return false
         }
 
         if (origin_acr === "All" && destination_acr !== "All") {
@@ -65,6 +66,7 @@ const getFullSearch = async (req, res) => {
             arrResults.push(returnFlight)
 
             res.json(arrResults)
+            return false
         }
 
         if (origin_acr !== "All") {
@@ -80,6 +82,7 @@ const getFullSearch = async (req, res) => {
             arrResults.push(returnFlight)
 
             res.json(arrResults)
+            return false
         }
 
         const [outboundFlight] = await FlightModel.selectAllToAll(origin_city, destination_city, departure)

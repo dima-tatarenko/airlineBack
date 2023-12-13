@@ -14,6 +14,14 @@ router.get('/:flightId', flightsCtrl.getById)
 // Post
 router.post('/', checkToken, checkAdmin, flightsCtrl.createFlight)
 router.post('/search', flightsCtrl.getFullSearch)
+router.post('/book', flightsCtrl.bookFlight)
+router.post('/seat', flightsCtrl.bookSeat)
+
+
+
+// AUXILIARY STUFF FOR TESTING
+router.post('/createseats', flightsCtrl.massSeats)
+router.post('/createflights', flightsCtrl.massFlights)
 
 
 module.exports = router

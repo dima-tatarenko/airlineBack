@@ -3,7 +3,11 @@ const selectAll = () => {
 }
 
 const selectById = (flightId) => {
-    return db.query('select * from flights where flights.id = ?;', [flightId])
+    return db.query('select * from flight where flights.id = ?;', [flightId])
+}
+
+const selectReservationById = (reservationId) => {
+    return db.query('select * from flight_reservation where flight_reservation.id = ?;', [reservationId])
 }
 
 const selectOneToOne = (origin_id, destination_id, departure) => {
@@ -22,18 +26,37 @@ const selectAllToAll = (origin_city, destination_city, departure) => {
     return db.query('SELECT flights.*, airports.* FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE airports.city = ? and flights.destination_city = ? and flights.departure >= ?;', [origin_city, destination_city, departure])
 }
 
-// May be totally useless
-// const selectByCities = (origin_id, destination_id) => {
-//     return db.query('select f.*, a.* from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ?', [origin_id, destination_id])
-// }
 
 const insertFlight = ({ origin_id, destination_id, destination_city, departure, arrival, duration, price, available_seats, available_luggage, terminal, gate, img }) => {
     return db.query('insert into flights (origin_id, destination_id, destination_city, departure,arrival,duration,price,available_seats,available_luggage,terminal,gate,img) values (?,?,?,?,?,?,?,?,?,?,?,?)', [origin_id, destination_id, destination_city, departure, arrival, duration, price, available_seats, available_luggage, terminal, gate, img])
 }
 
+const insertBooking = ({ users_id, flights_id, luggage, ticket_class, passenger_name, passport }) => {
+    return db.query('insert into flight_reservation (users_id, flights_id, luggage, class, passenger_name, passport) values (?,?,?,?,?,?)', [users_id, flights_id, luggage, ticket_class, passenger_name, passport])
+}
+
+const insertUserSeat = ({ seat_id, flight_reservation_id }) => {
+    return db.query('insert into passenger_seats (seat_id, flight_reservation_id) values (?, ?);', [seat_id, flight_reservation_id])
+}
+
+// Quick fix for backend to automatically generate seats.
+const insertSeat = ({ flights_id, seat_row, seat_column, location }) => {
+    return db.query('insert into seats (flights_id, seat_row, seat_column, location) values (?,?,?,?)', [flights_id, seat_row, seat_column, location])
+}
+
+// Things we need to insert 1 or 2 funcs?
+// connected table -> id is auto generated
+// users_id, flights_id, luggage(int), class(string), passenger_name(string), passport(string)
 
 
 
-module.exports = { selectAll, selectById, selectOneToOne, selectAllToOne, selectOneToAll, selectAllToAll, insertFlight }
+
+// May be totally useless
+// const selectByCities = (origin_id, destination_id) => {
+//     return db.query('select f.*, a.* from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ?', [origin_id, destination_id])
+// }
+
+
+module.exports = { selectAll, selectById, selectReservationById, selectOneToOne, selectAllToOne, selectOneToAll, selectAllToAll, insertFlight, insertBooking, insertUserSeat, insertSeat }
 
 

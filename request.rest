@@ -72,6 +72,36 @@ Content-Type: application/json
 
 
 
+###Book flights
+POST http://localhost:3100/api/flights/book
+Content-Type: application/json
+
+{
+"users_id": 12,
+"flights_id": 97,
+"luggage":20,
+"ticket_class": "Premium",
+"passenger_name": "Mr. Potatovich",
+"passport": "asdaasdsad"
+}
+
+
+###Book seats
+POST http://localhost:3100/api/flights/seat
+Content-Type: application/json
+
+{
+"seat_id": 20,
+"flight_reservation_id": 3
+}
+
+
+
+
+
+
+###------------------------------------------------------------------------------------
+
 ### Flights
 
 ### Get all
@@ -90,26 +120,9 @@ POST http://localhost:3100/api/flights/search
 "departure": "2023-01-15"
 }
 
-###
-POST http://localhost:3100/api/flights
-Content-Type: application/json
 
-{
-"origin_id": 4,
-"destination_id": 7,
-"destination_city": "London",
-"departure": "2023-12-15",
-"arrival": "2023-12-15",
-"duration": 2,
-"price": 200,
-"available_seats": 50,
-"available_luggage": 300,
-"terminal": 2,
-"gate": 3,
-"img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
-}
 
-###
+### CREATE AS A MUGGLE
 POST http://localhost:3100/api/flights
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJhY2Nlc3NfbGV2ZWwiOiJ1c2VyIiwiZXhwIjoxNzY1NTYzODU1LCJpYXQiOjE3MDI0MDU0NTV9.u1cSlMexpbWluqMaDJGKIE4e-U1K0Hgmsn-FCuLCppg
@@ -149,7 +162,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 "img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
 }
 
+### Mass insert flights please
+POST http://localhost:3100/api/flights/createflights
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
+{
+"origin_id": 7,
+"destination_id": 6,
+"destination_city": "London",
+"departure": "2024-02-15",
+"arrival": "2024-02-15",
+"duration": 2,
+"price": 500,
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 1,
+"gate": 7,
+"img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
+}
 
 
 ### AIRPORTS
@@ -311,8 +342,32 @@ Content-Type: application/json
   "img": "https://www.pariste.net/wp-content/uploads/2014/04/Paris-Orly-Havaalani-Pariste.Net-11.jpg"
 }
 
+### Insert seats please
+POST http://localhost:3100/api/flights/createseats
+Content-Type: application/json
 
+{
+  "flights_id": 1,
+  "seat_row": 1,
+  "seat_column": 1,
+  "location": "potato"
+}
 
+### Insert airports please
+POST http://localhost:3100/api/airports/createairports
+Content-Type: application/json
+
+{
+  "name": "a",
+  "name_acr": "a",
+  "city": "a",
+  "city_acr": "a",
+  "country": "a",
+  "country_acr": "a",
+  "terminals": "1",
+  "gates": "1",
+  "img": "a"
+}
 
 
 

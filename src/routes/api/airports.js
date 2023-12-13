@@ -14,4 +14,8 @@ router.get('/:airportId', airportsCtrl.getById)
 router.post('/', checkToken, checkAdmin, airportsCtrl.createAirport)
 
 
+
+// AUXILIARY STUFF FOR TESTING
+router.post('/createairports', airportsCtrl.massAirports)
+
 module.exports = router

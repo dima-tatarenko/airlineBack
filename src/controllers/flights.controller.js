@@ -152,10 +152,11 @@ const getFullSearch = async (req, res) => {
 // }
 
 const createFlight = async (req, res) => {
+
     try {
         const [result] = await FlightModel.insertFlight(req.body)
         const [flight] = await FlightModel.selectById(result.insertId)
-
+        console.log(flight[0])
         res.json(flight[0])
     } catch (error) {
         res.json({ error: error.message })

@@ -96,6 +96,13 @@ Content-Type: application/json
 }
 
 
+###Check reservations
+POST http://localhost:3100/api/users/reservations
+Content-Type: application/json
+
+{
+"userId": 9
+}
 
 
 

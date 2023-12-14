@@ -24,6 +24,24 @@ const getById = async (req, res) => {
     }
 }
 
+
+const getReservations = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        const [userCheck] = await UserModel.selectById(Number(userId))
+        if (userCheck.length === 0) return res.json({ error: "This user doesn't exist." })
+
+        const [result] = await UserModel.selectReservations(Number(userId))
+
+        console.log(result)
+        res.json(result)
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
+
 const createUser = async (req, res) => {
     try {
         // Number 5 for hashSync is how strong encription is and was set low for testing purposes.
@@ -72,4 +90,4 @@ const login = async (req, res) => {
 
 
 
-module.exports = { getById, createUser, login }
+module.exports = { getById, getReservations, createUser, login }

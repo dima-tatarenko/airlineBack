@@ -3,7 +3,8 @@ const selectAll = () => {
 }
 
 const selectById = (flightId) => {
-    return db.query('select * from flight where flights.id = ?;', [flightId])
+    console.log(flightId)
+    return db.query('select * from flights where flights.id = ?;', [flightId])
 }
 
 const selectReservationById = (reservationId) => {

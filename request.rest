@@ -76,6 +76,7 @@ Content-Type: application/json
 POST http://localhost:3100/api/flights/book
 Content-Type: application/json
 
+[
 {
 "users_id": 12,
 "flights_id": 97,
@@ -83,8 +84,16 @@ Content-Type: application/json
 "ticket_class": "Premium",
 "passenger_name": "Mr. Potatovich",
 "passport": "asdaasdsad"
+},
+{
+"users_id": 12,
+"flights_id": 97,
+"luggage":20,
+"ticket_class": "Premium",
+"passenger_name": "Mrs. Potatovich",
+"passport": "gdsfgdfgh"
 }
-
+]
 
 ###Book seats
 POST http://localhost:3100/api/flights/seat

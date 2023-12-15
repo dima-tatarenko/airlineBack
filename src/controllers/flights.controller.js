@@ -168,11 +168,14 @@ const createFlight = async (req, res) => {
 // more than one booking here. 'cause one user can book 2 tickets.
 const bookFlight = async (req, res) => {
     try {
-        const [result] = await FlightModel.insertBooking(req.body)
-        const [reservation] = await FlightModel.selectReservationById(result.insertId)
+        let arrReservations = []
+        for (reservation of req.body) {
+            await FlightModel.insertBooking(reservation)
+            arrReservations.push(reservation)
+        }
 
-        res.json(reservation[0])
-
+        console.log(arrReservations)
+        res.json(arrReservations)
 
     } catch (error) {
         res.json({ error: error.message })

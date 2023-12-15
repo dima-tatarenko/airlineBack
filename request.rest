@@ -74,6 +74,20 @@ Content-Type: application/json
 
 
 
+### EDIT user first_name, last_name, email, passport, phone
+PUT http://localhost:3100/api/users/11
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTc5MTM1MCwiaWF0IjoxNzAyNjMyOTUwfQ.sjHzAixmGIde3Mqchxx54M9cn_wQOAIYmc0TdTxcD5w
+
+{
+"first_name":"Amanda",
+"last_name":"Acker",
+"email":"amya@gmail.com",
+"passport":"12345789",
+"phone":"451234789"
+}
+
+
 ###Book flights
 POST http://localhost:3100/api/flights/book
 Content-Type: application/json

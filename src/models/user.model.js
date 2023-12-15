@@ -14,8 +14,13 @@ const insertUser = ({ first_name, last_name, email, password, access_level, pass
     return db.query('insert into users (first_name, last_name, email, password, access_level, passport,membership,phone) values (?,?,?,?,?,?,?,?)', [first_name, last_name, email, password, access_level, passport, membership, phone])
 }
 
+const updateById = (clientId, { first_name, last_name, email, passport, phone }) => {
+    return db.query('update users set first_name = ?, last_name = ?, email = ?, passport = ?, phone = ? where id = ?;',
+        [first_name, last_name, email, passport, phone, clientId])
+}
 
-module.exports = { selectById, selectByEmail, selectReservations, insertUser }
+
+module.exports = { selectById, selectByEmail, selectReservations, insertUser, updateById }
 
 
 // INTERFACE (IUser)

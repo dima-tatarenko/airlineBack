@@ -14,5 +14,7 @@ router.post('/', usersCtrl.createUser)
 router.post('/reservations', usersCtrl.getReservations)
 router.post('/login', usersCtrl.login)
 
+// Put
+router.put('/:userId', checkToken, usersCtrl.editUserById)
 
 module.exports = router

@@ -94,5 +94,14 @@ const login = async (req, res) => {
 }
 
 
+const editUserById = async (req, res) => {
+    const { userId } = req.params
+    await UserModel.updateById(userId, req.body)
 
-module.exports = { getLoggedUser, getReservations, createUser, login }
+    const [editedUser] = await UserModel.selectById(userId)
+    res.json(editedUser[0])
+
+}
+
+
+module.exports = { getLoggedUser, getReservations, createUser, login, editUserById }

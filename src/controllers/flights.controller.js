@@ -30,7 +30,13 @@ const getFullSearch = async (req, res) => {
     try {
         const arrResults = []
 
-        const { origin, destination, departure } = req.body;
+        let { fare, origin, destination, departure, return_date } = req.body;
+
+        if (return_date === '') {
+            return_date = "9999-02-02"
+        }
+
+        console.log(fare)
 
         let originArr = origin.split('-')
         let destinationArr = destination.split('-')
@@ -48,7 +54,7 @@ const getFullSearch = async (req, res) => {
         if (origin_acr !== "All" && destination_acr === "All") {
 
             const [outboundFlight] = await FlightModel.selectOneToAll(Number(origin_id), destination_city, departure)
-            const [returnFlight] = await FlightModel.selectAllToOne(destination_city, Number(origin_id), departure)
+            const [returnFlight] = await FlightModel.selectAllToOne(destination_city, Number(origin_id), return_date)
 
             arrResults.push(outboundFlight)
             arrResults.push(returnFlight)
@@ -60,7 +66,7 @@ const getFullSearch = async (req, res) => {
         if (origin_acr === "All" && destination_acr !== "All") {
 
             const [outboundFlight] = await FlightModel.selectAllToOne(origin_city, Number(destination_id), departure)
-            const [returnFlight] = await FlightModel.selectOneToAll(Number(destination_id), origin_city, departure)
+            const [returnFlight] = await FlightModel.selectOneToAll(Number(destination_id), origin_city, return_date)
 
             arrResults.push(outboundFlight)
             arrResults.push(returnFlight)
@@ -76,7 +82,7 @@ const getFullSearch = async (req, res) => {
             const destination_id = destination_airport[0].id
 
             const [outboundFlight] = await FlightModel.selectOneToOne(Number(origin_id), Number(destination_id), departure)
-            const [returnFlight] = await FlightModel.selectOneToOne(Number(destination_id), Number(origin_id), departure)
+            const [returnFlight] = await FlightModel.selectOneToOne(Number(destination_id), Number(origin_id), return_date)
 
             arrResults.push(outboundFlight)
             arrResults.push(returnFlight)
@@ -86,10 +92,12 @@ const getFullSearch = async (req, res) => {
         }
 
         const [outboundFlight] = await FlightModel.selectAllToAll(origin_city, destination_city, departure)
-        const [returnFlight] = await FlightModel.selectAllToAll(destination_city, origin_city, departure)
+        const [returnFlight] = await FlightModel.selectAllToAll(destination_city, origin_city, return_date)
 
         arrResults.push(outboundFlight)
-        arrResults.push(returnFlight)
+        if (fare === "round_trip") {
+            arrResults.push(returnFlight)
+        }
 
         // In case they REEEALLY don't wanna go back.
         // if (cosacheck = true) {

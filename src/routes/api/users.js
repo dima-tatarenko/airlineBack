@@ -3,10 +3,11 @@ const router = require('express').Router()
 
 // Internal imps
 const usersCtrl = require('../../controllers/users.controller')
+const { checkToken } = require('../../helpers/middlewares')
 
 
 // Get
-router.get('/:userId', usersCtrl.getById)
+router.get('/', checkToken, usersCtrl.getLoggedUser)
 
 // Post
 router.post('/', usersCtrl.createUser)

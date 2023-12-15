@@ -6,24 +6,29 @@ const UserModel = require('../models/user.model')
 const { createToken } = require('../helpers/utils')
 
 
-const getById = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        console.log(userId)
+const getLoggedUser = async (req, res) => {
+    console.log(req.user)
 
-        const [result] = await UserModel.selectById(Number(userId))
-        if (result.length === 0) return res.json({ error: "This user doesn't exist." })
+    res.json(req.user)
 
-        // const [user] = result
-        // There's only one item in this array, therefore we can simply access the first position and retrieve the user.
-
-        res.json(result[0])
-
-    } catch (error) {
-        res.json({ error: error.message })
-    }
 }
 
+// In case I need user by ID 
+// try {
+//     const { userId } = req.params;
+//     console.log(userId)
+
+//     const [result] = await UserModel.selectById(Number(userId))
+//     if (result.length === 0) return res.json({ error: "This user doesn't exist." })
+
+//     // const [user] = result
+//     // There's only one item in this array, therefore we can simply access the first position and retrieve the user.
+
+//     res.json(result[0])
+
+// } catch (error) {
+//     res.json({ error: error.message })
+// }
 
 const getReservations = async (req, res) => {
     try {
@@ -90,4 +95,4 @@ const login = async (req, res) => {
 
 
 
-module.exports = { getById, getReservations, createUser, login }
+module.exports = { getLoggedUser, getReservations, createUser, login }

@@ -1,5 +1,7 @@
 ### USERS
-GET http://localhost:3100/api/users/6
+GET http://localhost:3100/api/users
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTc5MTM1MCwiaWF0IjoxNzAyNjMyOTUwfQ.sjHzAixmGIde3Mqchxx54M9cn_wQOAIYmc0TdTxcD5w
 
 
 ###

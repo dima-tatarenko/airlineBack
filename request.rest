@@ -166,18 +166,18 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
 {
-"origin_id": 7,
-"destination_id": 6,
-"destination_city": "London",
-"departure": "2024-02-15",
-"arrival": "2024-02-15",
+"origin_id": 10,
+"destination_id": 11,
+"destination_city": "Tokyo",
+"departure": "2024-02-15 15:30",
+"arrival": "2024-02-15 23:30",
 "duration": 2,
 "price": 500,
 "available_seats": 50,
 "available_luggage": 300,
 "terminal": 1,
 "gate": 7,
-"img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
+"img": "https://stories.weroad.co.uk/wp-content/uploads/2023/04/tokyo.jpg"
 }
 
 ### Mass insert flights please
@@ -186,11 +186,11 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
 {
-"origin_id": 7,
-"destination_id": 6,
-"destination_city": "London",
+"origin_id": 6,
+"destination_id": 5,
+"destination_city": "Paris",
 "departure": "2024-02-15",
-"arrival": "2024-02-15",
+"arrival": "2024-03-15",
 "duration": 2,
 "price": 500,
 "available_seats": 50,

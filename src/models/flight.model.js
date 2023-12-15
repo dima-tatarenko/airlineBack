@@ -12,19 +12,19 @@ const selectReservationById = (reservationId) => {
 }
 
 const selectOneToOne = (origin_id, destination_id, departure) => {
-    return db.query('select f.*, a.name, a.name_acr, a.city, a.city_acr, a.country, a.country_acr, a.img, a.terminals, a.gates from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ? and f.departure >= ?;', [origin_id, destination_id, departure])
+    return db.query('select f.*, a.name, a.name_acr, a.city, a.city_acr, a.country, a.country_acr, a.img, a.terminals, a.gates from airlines_db.flights as f, airlines_db.airports as a where f.origin_id = a.id and f.origin_id = ? and f.destination_id = ? and f.departure >= ? order by f.departure;', [origin_id, destination_id, departure])
 }
 
 const selectAllToOne = (origin_city, destination_id, departure) => {
-    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE airports.city = ? and flights.destination_id = ? and flights.departure >= ?;', [origin_city, destination_id, departure])
+    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE airports.city = ? and flights.destination_id = ? and flights.departure >= ? order by flights.departure;', [origin_city, destination_id, departure])
 }
 
 const selectOneToAll = (origin_id, destination_city, departure) => {
-    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE flights.origin_id = ? and flights.destination_city = ? and flights.departure >= ?;', [origin_id, destination_city, departure])
+    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE flights.origin_id = ? and flights.destination_city = ? and flights.departure >= ? order by flights.departure;', [origin_id, destination_city, departure])
 }
 
 const selectAllToAll = (origin_city, destination_city, departure) => {
-    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE airports.city = ? and flights.destination_city = ? and flights.departure >= ?;', [origin_city, destination_city, departure])
+    return db.query('SELECT flights.*, airports.name, airports.name_acr, airports.city, airports.city_acr, airports.country, airports.country_acr, airports.img, airports.terminals, airports.gates FROM airlines_db.flights INNER JOIN airports ON flights.origin_id = airports.id WHERE airports.city = ? and flights.destination_city = ? and flights.departure >= ? order by flights.departure;', [origin_city, destination_city, departure])
 }
 
 

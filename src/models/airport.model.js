@@ -15,8 +15,12 @@ const insertAirport = ({ name, name_acr, city, city_acr, country, country_acr, t
         [name, name_acr, city, city_acr, country, country_acr, terminals, gates, img])
 }
 
+const updateById = (airportId, { name, name_acr, city, city_acr, country, country_acr, terminals, gates, img }) => {
+    return db.query('update airports set airports.name = ?, name_acr = ?, city = ?, city_acr = ?, country = ?, country_acr = ?, terminals = ?, gates = ?, img = ? where id = ?;',
+        [name, name_acr, city, city_acr, country, country_acr, terminals, gates, img, airportId])
+}
 
-module.exports = { selectAll, selectById, insertAirport, selectByAcr }
+module.exports = { selectAll, selectById, insertAirport, updateById, selectByAcr }
 
 
 // INTERFACE (IAirport)

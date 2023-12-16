@@ -13,7 +13,8 @@ router.get('/:airportId', airportsCtrl.getById)
 // Post
 router.post('/', checkToken, checkAdmin, airportsCtrl.createAirport)
 
-
+// Put
+router.put('/:airportId', checkToken, checkAdmin, airportsCtrl.editAirportById)
 
 // AUXILIARY STUFF FOR TESTING
 router.post('/createairports', airportsCtrl.massAirports)

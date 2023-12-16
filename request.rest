@@ -275,6 +275,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
   }
 
 
+### EDIT AS ADMIN
+PUT http://localhost:3100/api/airports/3
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
+
+{
+  "name": "Meow",
+  "name_acr": "TST",
+  "city": "Leon",
+  "city_acr": "LEN",
+  "country": "Spain",
+  "country_acr": "SPA",
+  "terminals": 1,
+  "gates": 5,
+  "img": "https://example.com/lax_airport_image.jpg"
+  }
+
 
 
 ### TESTING cities with more than one airport

@@ -56,6 +56,15 @@ const createAirport = async (req, res) => {
     }
 }
 
+const editAirportById = async (req, res) => {
+    const { airportId } = req.params
+    await AirportModel.updateById(airportId, req.body)
+
+    const [editedAirport] = await AirportModel.selectById(airportId)
+    res.json(editedAirport[0])
+
+}
+
 
 
 // AUXILIARY STUFF FOR TESTING
@@ -109,4 +118,4 @@ const massAirports = async (req, res) => {
 }
 
 
-module.exports = { getById, createAirport, getAll, massAirports }
+module.exports = { getById, createAirport, editAirportById, getAll, massAirports }

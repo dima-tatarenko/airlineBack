@@ -95,7 +95,8 @@ Content-Type: application/json
 [
 {
 "users_id": 12,
-"flights_id": 97,
+"outbound_id": 72,
+"return_id": 53,
 "luggage":20,
 "ticket_class": "Premium",
 "passenger_name": "Mr. Potatovich",
@@ -103,7 +104,8 @@ Content-Type: application/json
 },
 {
 "users_id": 12,
-"flights_id": 97,
+"outbound_id": 72,
+"return_id": 53,
 "luggage":20,
 "ticket_class": "Premium",
 "passenger_name": "Mrs. Potatovich",
@@ -124,10 +126,22 @@ Content-Type: application/json
 ###Check reservations
 POST http://localhost:3100/api/users/reservations
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTc5MTM1MCwiaWF0IjoxNzAyNjMyOTUwfQ.sjHzAixmGIde3Mqchxx54M9cn_wQOAIYmc0TdTxcD5w
 
 {
 "userId": 9
 }
+
+
+###Check reservations (By ID -> this is the one when you purchase a flight)
+POST http://localhost:3100/api/users/reservations/8
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTc5MTM1MCwiaWF0IjoxNzAyNjMyOTUwfQ.sjHzAixmGIde3Mqchxx54M9cn_wQOAIYmc0TdTxcD5w
+
+[
+  14,
+  58
+]
 
 
 
@@ -493,4 +507,8 @@ Content-Type: application/json
   }
 ]
 
+
+
+### Don't ask
+### http://localhost:4200/flight-list?fare=round_trip&origin=Paris-All-France&destination=London-All-United%20Kingdom&departure=2023-12-16&return_date=2023-12-20&passengers=2&class=Economy
 

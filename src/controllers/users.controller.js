@@ -47,6 +47,27 @@ const getReservations = async (req, res) => {
     }
 }
 
+const getReservationsById = async (req, res) => {
+
+    try {
+        const { userId } = req.params;
+        const flightIds = req.body;
+
+        const arrReservations = []
+
+        for (let i = 0; i < 2; i++) {
+            let [result] = await UserModel.selectReservationsById(Number(userId), Number(flightIds[i]))
+            arrReservations.push(result)
+        }
+
+        console.log(arrReservations)
+        res.json(arrReservations)
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+}
+
 const createUser = async (req, res) => {
     try {
         // Number 5 for hashSync is how strong encription is and was set low for testing purposes.
@@ -104,4 +125,4 @@ const editUserById = async (req, res) => {
 }
 
 
-module.exports = { getLoggedUser, getReservations, createUser, login, editUserById }
+module.exports = { getLoggedUser, getReservations, getReservationsById, createUser, login, editUserById }

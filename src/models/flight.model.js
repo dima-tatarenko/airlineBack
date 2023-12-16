@@ -32,7 +32,7 @@ const insertFlight = ({ origin_id, destination_id, destination_city, departure, 
     return db.query('insert into flights (origin_id, destination_id, destination_city, departure,arrival,duration,price,available_seats,available_luggage,terminal,gate,img) values (?,?,?,?,?,?,?,?,?,?,?,?)', [origin_id, destination_id, destination_city, departure, arrival, duration, price, available_seats, available_luggage, terminal, gate, img])
 }
 
-const insertBooking = ({ users_id, flights_id, luggage, ticket_class, passenger_name, passport }) => {
+const insertBooking = (flights_id, { users_id, luggage, ticket_class, passenger_name, passport }) => {
     return db.query('insert into flight_reservation (users_id, flights_id, luggage, class, passenger_name, passport) values (?,?,?,?,?,?)', [users_id, flights_id, luggage, ticket_class, passenger_name, passport])
 }
 

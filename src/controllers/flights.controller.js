@@ -118,20 +118,25 @@ const createFlight = async (req, res) => {
     }
 }
 
-
-// FUTURE ME: You'll need to receive an ARRAY of objects and loop through it to insert
-// more than one booking here. 'cause one user can book 2 tickets.
-// Present me: :) This code makes me happy.
-// Not only can a client book more than one ticket, but it also works for the return flight.
 const bookFlight = async (req, res) => {
     try {
-        let arrReservations = []
-        for (reservation of req.body) {
-            await FlightModel.insertBooking(reservation)
+        const { outbound_id } = req.body[0]
+        const { return_id } = req.body[1]
+
+        const arrReservations = []
+
+        console.log(outbound_id)
+        console.log(return_id)
+
+        for (let reservation of req.body) {
+            console.log(reservation)
             arrReservations.push(reservation)
+            await FlightModel.insertBooking(outbound_id, reservation)
+            await FlightModel.insertBooking(return_id, reservation)
         }
 
-        console.log(arrReservations)
+
+
         res.json(arrReservations)
 
     } catch (error) {

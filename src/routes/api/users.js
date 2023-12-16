@@ -11,7 +11,8 @@ router.get('/', checkToken, usersCtrl.getLoggedUser)
 
 // Post
 router.post('/', usersCtrl.createUser)
-router.post('/reservations', usersCtrl.getReservations)
+router.post('/reservations', checkToken, usersCtrl.getReservations)
+router.post('/reservations/:userId', checkToken, usersCtrl.getReservationsById)
 router.post('/login', usersCtrl.login)
 
 // Put

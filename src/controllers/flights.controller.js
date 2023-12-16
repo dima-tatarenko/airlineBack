@@ -121,7 +121,7 @@ const createFlight = async (req, res) => {
 const bookFlight = async (req, res) => {
     try {
         const { outbound_id } = req.body[0]
-        const { return_id } = req.body[1]
+        const { return_id } = req.body[0]
 
         const arrReservations = []
 

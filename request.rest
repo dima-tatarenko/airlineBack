@@ -91,25 +91,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 ###Book flights
 POST http://localhost:3100/api/flights/book
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTc5MTM1MCwiaWF0IjoxNzAyNjMyOTUwfQ.sjHzAixmGIde3Mqchxx54M9cn_wQOAIYmc0TdTxcD5w
 
 [
 {
-"users_id": 12,
-"outbound_id": 72,
-"return_id": 53,
+"users_id": 13,
+"outbound_id": 100,
+"return_id": 118,
 "luggage":20,
 "ticket_class": "Premium",
-"passenger_name": "Mr. Potatovich",
+"passenger_name": "Dima",
 "passport": "asdaasdsad"
-},
-{
-"users_id": 12,
-"outbound_id": 72,
-"return_id": 53,
-"luggage":20,
-"ticket_class": "Premium",
-"passenger_name": "Mrs. Potatovich",
-"passport": "gdsfgdfgh"
 }
 ]
 

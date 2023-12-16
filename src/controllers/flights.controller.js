@@ -32,7 +32,7 @@ const getFullSearch = async (req, res) => {
 
         let { fare, origin, destination, departure, return_date } = req.body;
 
-        if (return_date === '') {
+        if (return_date === '' || return_date === "undefined") {
             return_date = "9999-02-02"
         }
 

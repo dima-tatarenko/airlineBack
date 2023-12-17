@@ -3,7 +3,6 @@ const selectAll = () => {
 }
 
 const selectById = (flightId) => {
-    console.log(flightId)
     return db.query('select * from flights where flights.id = ?;', [flightId])
 }
 
@@ -29,7 +28,14 @@ const selectAllToAll = (origin_city, destination_city, departure) => {
 
 
 const insertFlight = ({ origin_id, destination_id, destination_city, departure, arrival, duration, price, available_seats, available_luggage, terminal, gate, img }) => {
+    console.log(`A new flight was created.`)
     return db.query('insert into flights (origin_id, destination_id, destination_city, departure,arrival,duration,price,available_seats,available_luggage,terminal,gate,img) values (?,?,?,?,?,?,?,?,?,?,?,?)', [origin_id, destination_id, destination_city, departure, arrival, duration, price, available_seats, available_luggage, terminal, gate, img])
+}
+
+const updateById = (flightId, { departure, arrival, duration, status, terminal, gate, price, img }) => {
+    console.log(`Flight ${flightId} was edited.`)
+    return db.query('update flights set departure = ?, arrival = ?, duration = ?, status = ?, terminal = ?, gate = ?, price = ?, img = ? where flights.id = ?;',
+        [departure, arrival, duration, status, terminal, gate, price, img, flightId])
 }
 
 const insertBooking = (flights_id, { users_id, luggage, ticket_class, passenger_name, passport }) => {
@@ -58,6 +64,6 @@ const insertSeat = ({ flights_id, seat_row, seat_column, location }) => {
 // }
 
 
-module.exports = { selectAll, selectById, selectReservationById, selectOneToOne, selectAllToOne, selectOneToAll, selectAllToAll, insertFlight, insertBooking, insertUserSeat, insertSeat }
+module.exports = { selectAll, selectById, selectReservationById, selectOneToOne, selectAllToOne, selectOneToAll, selectAllToAll, insertFlight, updateById, insertBooking, insertUserSeat, insertSeat }
 
 

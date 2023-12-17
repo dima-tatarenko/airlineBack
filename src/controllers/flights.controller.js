@@ -118,6 +118,15 @@ const createFlight = async (req, res) => {
     }
 }
 
+const editFlightById = async (req, res) => {
+    const { flightId } = req.params
+    await FlightModel.updateById(flightId, req.body)
+
+    const [editedFlight] = await FlightModel.selectById(flightId)
+    res.json(editedFlight[0])
+
+}
+
 const bookFlight = async (req, res) => {
     try {
         const { outbound_id } = req.body[0]
@@ -305,4 +314,4 @@ const massSeats = async (req, res) => {
     }
 }
 
-module.exports = { getAll, getById, createFlight, bookFlight, bookSeat, getFullSearch, massSeats, massFlights }
+module.exports = { getAll, getById, createFlight, editFlightById, bookFlight, bookSeat, getFullSearch, massSeats, massFlights }

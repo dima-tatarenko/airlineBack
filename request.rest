@@ -200,6 +200,28 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 "img": "https://stories.weroad.co.uk/wp-content/uploads/2023/04/tokyo.jpg"
 }
 
+
+### EDIT AS ADMIN
+PUT http://localhost:3100/api/flights/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
+
+{
+"origin_id": 10,
+"destination_id": 11,
+"destination_city": "Tokyo",
+"departure": "2024-02-15 15:30",
+"arrival": "2024-02-15 23:30",
+"duration": 2,
+"price": 500,
+"available_seats": 50,
+"available_luggage": 300,
+"terminal": 1,
+"gate": 7,
+"img": "https://stories.weroad.co.uk/wp-content/uploads/2023/04/tokyo.jpg",
+"status":"delayed"
+}
+
 ### Mass insert flights please
 POST http://localhost:3100/api/flights/createflights
 Content-Type: application/json

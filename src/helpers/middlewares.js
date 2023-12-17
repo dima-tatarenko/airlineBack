@@ -20,10 +20,9 @@ const checkToken = async (req, res, next) => {
     }
 
     const [result] = await UserModel.selectById(payload.user_id)
-    console.log(result[0])
     // CRUCIAL! VERY IMPORTANT! DO NOT FORGET THE NEXT LINE FOR :)
     req.user = result[0]
-    console.log(req.user)
+    console.log(`Action performed by: ${req.user.first_name} ${req.user.last_name} (${req.user.access_level})`)
 
 
     next()

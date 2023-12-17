@@ -17,7 +17,8 @@ router.post('/search', flightsCtrl.getFullSearch)
 router.post('/book', flightsCtrl.bookFlight)
 router.post('/seat', flightsCtrl.bookSeat)
 
-
+// Put
+router.put('/:flightId', checkToken, checkAdmin, flightsCtrl.editFlightById)
 
 // AUXILIARY STUFF FOR TESTING
 router.post('/createseats', flightsCtrl.massSeats)

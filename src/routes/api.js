@@ -18,6 +18,10 @@ router.use('/flights', require('./api/flights'))
 router.use('/airports', require('./api/airports'))
 
 
+// Emails
+router.use('/emails', require('./api/emails'))
+
+
 
 
 

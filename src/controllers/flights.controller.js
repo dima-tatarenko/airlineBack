@@ -1,5 +1,7 @@
 const FlightModel = require('../models/flight.model')
 const AirportModel = require('../models/airport.model')
+const UserModel = require('../models/user.model')
+const { getTransporter } = require('../helpers/utils')
 
 const getAll = async (req, res) => {
     try {
@@ -123,6 +125,36 @@ const editFlightById = async (req, res) => {
     await FlightModel.updateById(flightId, req.body)
 
     const [editedFlight] = await FlightModel.selectById(flightId)
+
+    const [emailObjArr] = await UserModel.selectEmailsById(118)
+    const emailArr = []
+
+    for (let email of emailObjArr) {
+        emailArr.push(email.email)
+    }
+
+    const uniqueEmails = [...new Set(emailArr)].join()
+
+    // FORCE TEST
+    // const uniqueEmails = "yourmail1@gmail.com, yourmail2@gmail.com"
+
+    // EMAIL DESCRIPTION
+    const mailOptions = {
+        from: "flightifyairlines@gmail.com",
+        to: uniqueEmails,
+        subject: "Your flight was modified",
+        text: "Some of your flight data might have changed. Please log into our website and check your flight status under 'my flights'"
+    };
+
+    // SEND EMAIL
+    getTransporter().sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Flight change notification sent to all users registered for the flight.');
+        }
+    });
+
     res.json(editedFlight[0])
 
 }
@@ -134,18 +166,42 @@ const bookFlight = async (req, res) => {
 
         const arrReservations = []
 
-        console.log(outbound_id)
-        console.log(return_id)
-
         for (let reservation of req.body) {
-            console.log(reservation)
             arrReservations.push(reservation)
             await FlightModel.insertBooking(outbound_id, reservation)
             await FlightModel.insertBooking(return_id, reservation)
         }
 
+        const [emailObjArr] = await UserModel.selectEmailById(118, 13)
+        const emailArr = []
 
+        for (let email of emailObjArr) {
+            emailArr.push(email.email)
+        }
 
+        const UserEmail = [...new Set(emailArr)].join()
+
+        // FORCE TEST
+        // const UserEmail = "dmitriy.tatarenko@gmail.com"
+
+        // EMAIL DESCRIPTION
+        const mailOptions = {
+            from: "flightifyairlines@gmail.com",
+            to: UserEmail,
+            subject: "Thank you for flying with us!",
+            text: "Thank you for booking a flight with Flightify. Remember that you can always visit the 'my flights' section for more information."
+        };
+
+        // SEND EMAIL
+        getTransporter().sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('User booked a flight.');
+            }
+        });
+
+        console.log(arrReservations)
         res.json(arrReservations)
 
     } catch (error) {

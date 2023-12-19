@@ -451,9 +451,7 @@ Content-Type: application/json
 
 router.post('/flight-update', emailsCtrl.notifyFlightUpdates)
 
-### SEND EMAIL 
-POST http://localhost:3100/api/emails/flight-update
-Content-Type: application/json
+
 
 
 

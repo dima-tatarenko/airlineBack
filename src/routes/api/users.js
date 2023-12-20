@@ -18,4 +18,8 @@ router.post('/login', usersCtrl.login)
 // Put
 router.put('/:userId', checkToken, usersCtrl.editUserById)
 
+
+// Mass inserts - Back-end only
+router.post('/createusers', usersCtrl.massUsers)
+
 module.exports = router

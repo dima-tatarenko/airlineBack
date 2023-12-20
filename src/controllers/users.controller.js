@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 // Internal imps
 const UserModel = require('../models/user.model')
 const { createToken } = require('../helpers/utils')
+const userData = require('../autofill/users.json')
 
 
 const getLoggedUser = async (req, res) => {
@@ -12,23 +13,6 @@ const getLoggedUser = async (req, res) => {
     res.json(req.user)
 
 }
-
-// In case I need user by ID 
-// try {
-//     const { userId } = req.params;
-//     console.log(userId)
-
-//     const [result] = await UserModel.selectById(Number(userId))
-//     if (result.length === 0) return res.json({ error: "This user doesn't exist." })
-
-//     // const [user] = result
-//     // There's only one item in this array, therefore we can simply access the first position and retrieve the user.
-
-//     res.json(result[0])
-
-// } catch (error) {
-//     res.json({ error: error.message })
-// }
 
 const getReservations = async (req, res) => {
     try {
@@ -125,4 +109,26 @@ const editUserById = async (req, res) => {
 }
 
 
-module.exports = { getLoggedUser, getReservations, getReservationsById, createUser, login, editUserById }
+
+
+const massUsers = async (req, res) => {
+    addedUsersArr = []
+    for (let user of userData) {
+        try {
+            // Number 5 for hashSync is how strong encription is and was set low for testing purposes.
+            user.password = bcrypt.hashSync(user.password, 5)
+
+            addedUsersArr.push(user)
+            await UserModel.insertUser(user)
+
+        } catch (error) {
+            res.json({ error: error.message })
+        }
+    }
+
+    res.json(addedUsersArr)
+
+}
+
+
+module.exports = { getLoggedUser, getReservations, getReservationsById, createUser, login, editUserById, massUsers }

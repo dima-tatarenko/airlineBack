@@ -16,7 +16,9 @@ router.post('/', checkToken, checkAdmin, airportsCtrl.createAirport)
 // Put
 router.put('/:airportId', checkToken, checkAdmin, airportsCtrl.editAirportById)
 
-// AUXILIARY STUFF FOR TESTING
+
+
+// Mass inserts - Back-end only
 router.post('/createairports', airportsCtrl.massAirports)
 
 module.exports = router

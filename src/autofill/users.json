@@ -1,0 +1,47 @@
+[
+    {
+        "first_name": "Dima",
+        "last_name": "Tatarenko",
+        "passport": "realpassword1",
+        "email": "dmitriy.tatarenko@gmail.com",
+        "phone": "111222333",
+        "password": "1234",
+        "access_level": "admin"
+    },
+    {
+        "first_name": "Tom",
+        "last_name": "Parra",
+        "passport": "realpassport2",
+        "email": "tomas.moralparra@gmail.com",
+        "phone": "333444555",
+        "password": "1234",
+        "access_level": "admin"
+    },
+    {
+        "first_name": "Catia",
+        "last_name": "Fernandez",
+        "passport": "realpassport3",
+        "email": "katia.fernandezmacias@gmail.com",
+        "phone": "444555666",
+        "password": "1234",
+        "access_level": "admin"
+    },
+    {
+        "first_name": "Amanda",
+        "last_name": "Acker",
+        "passport": "realpassport4",
+        "email": "amy@gmail.com",
+        "phone": "444555666",
+        "password": "1234",
+        "access_level": "user"
+    },
+    {
+        "first_name": "Tom",
+        "last_name": "Henson",
+        "passport": "realpassport5",
+        "email": "tom@gmail.com",
+        "phone": "444555666",
+        "password": "1234",
+        "access_level": "user"
+    }
+]

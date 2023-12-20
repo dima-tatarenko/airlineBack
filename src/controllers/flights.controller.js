@@ -3,6 +3,22 @@ const AirportModel = require('../models/airport.model')
 const UserModel = require('../models/user.model')
 const { getTransporter } = require('../helpers/utils')
 
+
+// Image json imports
+const france_ory = require('../autofill/france_ory')
+const france = require('../autofill/france')
+const germany_mun = require('../autofill/germany_mun')
+const germany = require('../autofill/germany')
+const japan_nar = require('../autofill/japan_nar')
+const japan = require('../autofill/japan')
+const lax = require('../autofill/lax')
+const norway = require('../autofill/norway')
+const portland = require('../autofill/portland')
+const russia = require('../autofill/russia')
+const uk_gat = require('../autofill/uk_gat')
+const uk = require('../autofill/uk')
+// Image json imports
+
 const getAll = async (req, res) => {
     try {
         const [result] = await FlightModel.selectAll()
@@ -232,107 +248,121 @@ const bookSeat = async (req, res) => {
 
 
 
-// AUXILIARY STUFF FOR TESTING
+// AUXILIARY FUNCTIONS
 
+
+// Mass insert flights
+// Thought process
+// Can't use an airport array -> duration is different for each flight
+// iterable variables -> departure (must iterate by time)
+// could iterate day / time with for (let j=0)
+
+// preparation: origin_id, destination_id, duration, price
+// can add: departure, arrival (this is what uses i, j loops)
+// generic (assuming same plane): seats cap., luggage cap., terminal, gate
+
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 41) - 20; // Generates a random number between -20 and 20
+}
+
+// Valid mass insert :)
 const massFlights = async (req, res) => {
     try {
-        const arrFlights = [
-            {
-                "origin_id": 4,
-                "destination_id": 6,
-                "departure": "2024-02-15 10:10",
-                "arrival": "2024-02-15 14:10",
-                "duration": 2,
-                "price": 99,
-                "available_seats": 50,
-                "available_luggage": 300,
-                "terminal": 1,
-                "gate": 7,
-                "img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
-            },
-            {
-                "origin_id": 4,
-                "destination_id": 7,
-                "departure": "2023-12-15 ",
-                "arrival": "2023-12-15",
-                "duration": 2,
-                "price": 200,
-                "available_seats": 50,
-                "available_luggage": 300,
-                "terminal": 2,
-                "gate": 3,
-                "img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
-            },
-            {
-                "origin_id": 5,
-                "destination_id": 6,
-                "departure": "2023-12-15",
-                "arrival": "2023-12-15",
-                "duration": 2,
-                "price": 200,
-                "available_seats": 50,
-                "available_luggage": 300,
-                "terminal": 2,
-                "gate": 3,
-                "img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
-            },
-            {
-                "origin_id": 5,
-                "destination_id": 1,
-                "departure": "2023-12-15",
-                "arrival": "2023-12-15",
-                "duration": 2,
-                "price": 200,
-                "available_seats": 50,
-                "available_luggage": 300,
-                "terminal": 2,
-                "gate": 3,
-                "img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
-            },
-            {
-                "origin_id": 6,
-                "destination_id": 4,
-                "departure": "2023-12-15",
-                "arrival": "2023-12-15",
-                "duration": 2,
-                "price": 3,
-                "available_seats": 50,
-                "available_luggage": 300,
-                "terminal": 2,
-                "gate": 3,
-                "img": "https://cdn.insuremytrip.com/resources/29337/spain_travel_insurance_seville.jpg"
+        addedFlightsArr = []
+        let counter = 0
+        let arrival_time;
+
+        let departure_day;
+
+
+
+        // IMG FILE NAMES: france_ory, france, germany_mun, germany, japan, japan_nar, lax, norway, portland, russia, uk_gat, uk
+        // Quick fill info
+        // LA - Tokyo (~1200) (duration 12h)
+        // Paris - London (~120) (duration 1h)
+        // Munich - Paris (~160) (duration 2h)
+        // Madrid (3) - Paris(4) (~160) (duration 2h) france / france_ory
+
+        // Madrid (3) - LA(2) (~650) (duration 13h) lax
+        // Madrid (3) - Portland(1) (~400) (duration 18h) portland
+        // Madrid (3) - London(6-Gat, 7-Hea) (~60) (duration 3h) uk, uk_gat
+        // Madrid (3) - Germany(Ber-8 | Mun-9) (~100) (duration 3h) germany, germany_mun
+
+        // STOPPED INSERTS AT GERMANY. 
+
+        // Madrid (3) - Oslo(12) (~160) (duration 2h) norway
+        // Madrid (3) - Tokyo(Han-13 | Nar-14) (~160) (duration 2h) japan, japan_nar
+
+        // EDIT ONLY THESE VALUES
+        let origin_airport_id = 3
+        let destination_airport_id = 9
+        let departure_year = 2023
+        let departure_month = 12
+        let day_start = 21 // Defines the day of the month to start || Missing conditions for month and year change!
+        let last_day = day_start + 7 // Modify the 7 only if day_start + 7 > days in that month
+        let flight_duration = 2
+        let flight_price = 120
+        let imgJson = germany_mun
+
+        // let arrival_date = "2023-12-21" - Disabled. Would need to fiddle with day change. 
+        // Bug example: flight takes of at 23:00 and lands at 01:00.
+        // EDIT ONLY THESE VALUES
+
+        const [airport] = await AirportModel.selectById(destination_airport_id)
+
+        for (j = 21; j < last_day; j++) {
+            departure_day = j
+            for (let i = 1; i < 24; i += 3) {
+                if (i + flight_duration > 24) {
+                    arrival_time = (i + flight_duration) - 24
+                } else {
+                    arrival_time = i + flight_duration
+                }
+
+                if (arrival_time === 24) {
+                    arrival_time = Number("00")
+                }
+
+                // Flight information (tertiary functions might be weird to read, could be extracted)
+                let flightInfo = {
+                    origin_id: origin_airport_id,
+                    destination_id: destination_airport_id,
+                    destination_city: airport[0].city,
+                    departure: i < 10 ? `${departure_year}-${departure_month}-${departure_day} 0${i}:00` : `${departure_year}-${departure_month}-${departure_day} ${i}:00`,
+                    arrival: arrival_time < 10 ? `${departure_year}-${departure_month}-${departure_day} 0${arrival_time}:00` : `${departure_year}-${departure_month}-${departure_day} ${arrival_time}:00`,
+                    duration: flight_duration,
+                    price: flight_price + generateRandomNumber(),
+                    available_seats: 200,
+                    available_luggage: 5000,
+                    terminal: 1,
+                    gate: counter + 1,
+                    img: `${imgJson[counter].img}`,
+                    status: "active"
+                };
+
+                addedFlightsArr.push(flightInfo);
+                await FlightModel.insertFlight(flightInfo)
+
+                console.log(counter);
+                counter = counter + 1;
+
+                console.log(imgJson[counter].img);
             }
-
-        ]
-
-        for (let flight of arrFlights) {
-            const [airport] = await AirportModel.selectById(flight.destination_id)
-
-            console.log(airport[0].city)
-
-            req.body.origin_id = flight.origin_id
-            req.body.destination_id = flight.destination_id
-            req.body.destination_city = airport[0].city
-            req.body.departure = flight.departure
-            req.body.arrival = flight.arrival
-            req.body.duration = flight.duration
-            req.body.price = flight.price
-            req.body.available_seats = flight.available_seats
-            req.body.available_luggage = flight.available_luggage
-            req.body.terminal = flight.terminal
-            req.body.gate = flight.gate
-            req.body.img = flight.img
-            await FlightModel.insertFlight(req.body)
-
+            counter = 0
         }
 
 
-        res.json("Meow added many flights. What do you wanna do meow?")
+        res.json(addedFlightsArr);
     } catch (error) {
-        res.json({ error: error.message })
+        res.json({ error: error.message });
     }
 }
 
+
+// Function to insert many seats at once. Works based on given rows.
+// Could be easily changed to accomodate planes with 3 seats per row or 9 total seat columns
+// This is simply a mock test for the existing DB. Final version would swap req.body inserts
+// to an object with variables edited inside the loop.
 const massSeats = async (req, res) => {
     try {
         let max_rows = 10

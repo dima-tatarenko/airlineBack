@@ -16,39 +16,8 @@ Content-Type: application/json
 "phone":"555444333",
 "password":"1234",
 "access_level":"user",
-"membership":"wooden"
+"membership":"general"
 }
-
-###
-POST http://localhost:3100/api/users
-Content-Type: application/json
-
-{
-"first_name":"Test2",
-"last_name":"Testons2",
-"passport":"ASDFC2",
-"email":"test2@gmail.com",
-"phone":"555444333",
-"password":"1234",
-"access_level":"user",
-"membership":"wooden"
-}
-
-###
-POST http://localhost:3100/api/users
-Content-Type: application/json
-
-{
-"first_name":"Test3",
-"email":"test3@gmail.com",
-"passport":"ASDFC3",
-"last_name":"Testons3",
-"phone":"555444333",
-"password":"1234",
-"access_level":"user",
-"membership":"wooden"
-}
-
 
 
 ### Log in as regular user
@@ -136,9 +105,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 ]
 
 
+### Mass insert users, please
+POST http://localhost:3100/api/users/createusers
+Content-Type: application/json
+
+###
 
 
-###------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+###----------------------------
 
 ### Flights
 
@@ -149,17 +132,8 @@ GET http://localhost:3100/api/flights
 GET http://localhost:3100/api/flights/2
 
 
-### Full search / Works, but not through request.rest!
-POST http://localhost:3100/api/flights/search
-
-{
-"origin_id": 1,
-"destination_id": 3,
-"departure": "2023-01-15"
-}
-
-
-
+### ALL OF THE FLIGHT ENTRIES MUST BE CORRECTED!
+### NEW DB HAS DIFFERENT IDs
 ### CREATE AS A MUGGLE
 POST http://localhost:3100/api/flights
 Content-Type: application/json
@@ -189,8 +163,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 "origin_id": 10,
 "destination_id": 11,
 "destination_city": "Tokyo",
-"departure": "2024-02-15 15:30",
-"arrival": "2024-02-15 23:30",
+"departure": "2024-02-15 5:30",
+"arrival": "2024-02-15 7:30",
 "duration": 2,
 "price": 500,
 "available_seats": 50,
@@ -222,27 +196,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
 "status":"delayed"
 }
 
-### Mass insert flights please
+
+
+
+### Mass insert flights, please
 POST http://localhost:3100/api/flights/createflights
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
-{
-"origin_id": 6,
-"destination_id": 5,
-"destination_city": "Paris",
-"departure": "2024-02-15",
-"arrival": "2024-03-15",
-"duration": 2,
-"price": 500,
-"available_seats": 50,
-"available_luggage": 300,
-"terminal": 1,
-"gate": 7,
-"img": "https://a.cdn-hotels.com/gdcs/production101/d154/ee893f00-c31d-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=800&h=533&q=medium"
-}
 
 
+
+
+
+
+
+
+
+
+###----------------------------
 ### AIRPORTS
 
 ### Get all
@@ -250,40 +222,6 @@ GET http://localhost:3100/api/airports
 
 ### Get By ID
 GET http://localhost:3100/api/airports/2
-
-
-###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-{
-"name": "John F. Kennedy International Airport",
-"name_acr": "JFK",
-"city": "New York City",
-"city_acr": "NYC",
-"country": "United States",
-"country_acr": "US",
-"terminals": "6",
-"gates": "128",
-"img": "https://nyartlife.com/wp-content/uploads/2022/06/jfk-jpg.jpg"
-}
-
-###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-  {
-    "name": "Suvarnabhumi Airport",
-    "name_acr": "BKK",
-    "city": "Bangkok",
-    "city_acr": "BKK",
-    "country": "Thailand",
-    "country_acr": "TH",
-    "terminals": 2,
-    "gates": 120,
-    "img": "https://www.airport-technology.com/wp-content/uploads/sites/14/2002/09/Featured_Image_-_Suvarnabhumi_Airport_Thailand1.jpg"
-  }
-
 
 ### CREATE AS ADMIN
 POST http://localhost:3100/api/airports
@@ -301,7 +239,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
   "gates": 130,
   "img": "https://example.com/lax_airport_image.jpg"
   }
-
 
 ### EDIT AS ADMIN
 PUT http://localhost:3100/api/airports/3
@@ -321,104 +258,29 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3Nf
   }
 
 
-
-### TESTING cities with more than one airport
-###
-POST http://localhost:3100/api/airports
+### Mass insert airports, please
+POST http://localhost:3100/api/airports/createairports
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2Nlc3NfbGV2ZWwiOiJhZG1pbiIsImV4cCI6MTc2NTU2Mzc3MiwiaWF0IjoxNzAyNDA1MzcyfQ.5AgzrxjLdgvSDbrccRhbhXx07dA_aogSpxC40O33k80
 
 {
-  "name": "Charles de Gaulle Airport",
-  "name_acr": "CDG",
-  "city": "Paris",
-  "city_acr": "PAR",
-  "country": "France",
-  "country_acr": "FR",
-  "terminals": "3",
-  "gates": "176",
-  "img": "https://s28477.pcdn.co/wp-content/uploads/2017/10/CDG_4-984x554.jpg"
+  "name": "",
+  "name_acr": "",
+  "city": "",
+  "city_acr": "",
+  "country": "",
+  "country_acr": "",
+  "terminals": 1,
+  "gates": 1,
+  "img": ""
 }
 
 ###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
 
-{
-  "name": "Orly Airport",
-  "name_acr": "ORY",
-  "city": "Paris",
-  "city_acr": "PAR",
-  "country": "France",
-  "country_acr": "FR",
-  "terminals": "4",
-  "gates": "80",
-  "img": "https://www.pariste.net/wp-content/uploads/2014/04/Paris-Orly-Havaalani-Pariste.Net-11.jpg"
-}
 
-###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
 
-{
-  "name": "Heathrow Airport",
-  "name_acr": "LHR",
-  "city": "London",
-  "city_acr": "LON",
-  "country": "United Kingdom",
-  "country_acr": "UK",
-  "terminals": "5",
-  "gates": "146",
-  "img": "https://www.heathrow.com/-/media/heathrow/home/image-carousel/full-width-carousel/h1/july-2021/1920x750-01.jpg"
-}
 
-###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-{
-  "name": "Gatwick Airport",
-  "name_acr": "LGW",
-  "city": "London",
-  "city_acr": "LON",
-  "country": "United Kingdom",
-  "country_acr": "UK",
-  "terminals": "2",
-  "gates": "123",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gatwick_Airport_2018.jpg/1920px-Gatwick_Airport_2018.jpg"
-}
-
-### All airports - London, UK
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-{
-  "name": "All",
-  "name_acr": "All",
-  "city": "London",
-  "city_acr": "LON",
-  "country": "United Kingdom",
-  "country_acr": "UK",
-  "terminals": 0,
-  "gates": 0,
-  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gatwick_Airport_2018.jpg/1920px-Gatwick_Airport_2018.jpg"
-}
-
-### All airports - Paris, France
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-{
-  "name": "All",
-  "name_acr": "All",
-  "city": "Paris",
-  "city_acr": "PAR",
-  "country": "France",
-  "country_acr": "FR",
-  "terminals": "4",
-  "gates": "80",
-  "img": "https://www.pariste.net/wp-content/uploads/2014/04/Paris-Orly-Havaalani-Pariste.Net-11.jpg"
-}
-
+### EXTRA
 ### Insert seats please
 POST http://localhost:3100/api/flights/createseats
 Content-Type: application/json
@@ -429,100 +291,4 @@ Content-Type: application/json
   "seat_column": 1,
   "location": "potato"
 }
-
-### Insert airports please
-POST http://localhost:3100/api/airports/createairports
-Content-Type: application/json
-
-{
-  "name": "a",
-  "name_acr": "a",
-  "city": "a",
-  "city_acr": "a",
-  "country": "a",
-  "country_acr": "a",
-  "terminals": "1",
-  "gates": "1",
-  "img": "a"
-}
-
-
-
-
-router.post('/flight-update', emailsCtrl.notifyFlightUpdates)
-
-
-
-
-
-
-
-
-
-###
-POST http://localhost:3100/api/airports
-Content-Type: application/json
-
-[
-  {
-    "name": "Suvarnabhumi Airport",
-    "name_acr": "BKK",
-    "city": "Bangkok",
-    "city_acr": "BKK",
-    "country": "Thailand",
-    "country_acr": "TH",
-    "terminals": 2,
-    "gates": 120,
-    "img": "https://example.com/suvarnabhumi_airport_image.jpg"
-  },
-  {
-    "name": "Dubai International Airport",
-    "name_acr": "DXB",
-    "city": "Dubai",
-    "city_acr": "DXB",
-    "country": "United Arab Emirates",
-    "country_acr": "AE",
-    "terminals": 3,
-    "gates": 200,
-    "img": "https://example.com/dubai_airport_image.jpg"
-  },
-  {
-    "name": "Los Angeles International Airport",
-    "name_acr": "LAX",
-    "city": "Los Angeles",
-    "city_acr": "LAX",
-    "country": "United States",
-    "country_acr": "US",
-    "terminals": 9,
-    "gates": 130,
-    "img": "https://example.com/lax_airport_image.jpg"
-  },
-  {
-    "name": "Heathrow Airport",
-    "name_acr": "LHR",
-    "city": "London",
-    "city_acr": "LON",
-    "country": "United Kingdom",
-    "country_acr": "UK",
-    "terminals": 5,
-    "gates": 120,
-    "img": "https://example.com/heathrow_airport_image.jpg"
-  },
-  {
-    "name": "Tokyo Haneda Airport",
-    "name_acr": "HND",
-    "city": "Tokyo",
-    "city_acr": "TYO",
-    "country": "Japan",
-    "country_acr": "JP",
-    "terminals": 4,
-    "gates": 115,
-    "img": "https://example.com/haneda_airport_image.jpg"
-  }
-]
-
-
-
-### Don't ask
-### http://localhost:4200/flight-list?fare=round_trip&origin=Paris-All-France&destination=London-All-United%20Kingdom&departure=2023-12-16&return_date=2023-12-20&passengers=2&class=Economy
 

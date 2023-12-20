@@ -20,7 +20,9 @@ router.post('/seat', flightsCtrl.bookSeat)
 // Put
 router.put('/:flightId', checkToken, checkAdmin, flightsCtrl.editFlightById)
 
-// AUXILIARY STUFF FOR TESTING
+
+
+// Mass inserts - Back-end only
 router.post('/createseats', flightsCtrl.massSeats)
 router.post('/createflights', flightsCtrl.massFlights)
 

@@ -14,6 +14,7 @@ const japan = require('../autofill/japan')
 const lax = require('../autofill/lax')
 const norway = require('../autofill/norway')
 const portland = require('../autofill/portland')
+const spain = require('../autofill/spain')
 const russia = require('../autofill/russia')
 const uk_gat = require('../autofill/uk_gat')
 const uk = require('../autofill/uk')
@@ -281,28 +282,28 @@ const massFlights = async (req, res) => {
         // LA - Tokyo (~1200) (duration 12h)
         // Paris - London (~120) (duration 1h)
         // Munich - Paris (~160) (duration 2h)
-        // Madrid (3) - Paris(4) (~160) (duration 2h) france / france_ory
 
+
+
+        // Madrid (3) - Paris(4, 5(ory)) (~160) (duration 2h) france / france_ory
         // Madrid (3) - LA(2) (~650) (duration 13h) lax
         // Madrid (3) - Portland(1) (~400) (duration 18h) portland
         // Madrid (3) - London(6-Gat, 7-Hea) (~60) (duration 3h) uk, uk_gat
         // Madrid (3) - Germany(Ber-8 | Mun-9) (~100) (duration 3h) germany, germany_mun
-
-        // STOPPED INSERTS AT GERMANY. 
-
-        // Madrid (3) - Oslo(12) (~160) (duration 2h) norway
-        // Madrid (3) - Tokyo(Han-13 | Nar-14) (~160) (duration 2h) japan, japan_nar
+        // Madrid (3) - Oslo(12) (~80) (duration 4h) norway
+        // Madrid (3) - Tokyo(Han-13 | Nar-14) (~400) (duration 18h) japan, japan_nar
+        // Madrid (3) - Russia(Pul-16) (~200) (duration 5h) russia
 
         // EDIT ONLY THESE VALUES
-        let origin_airport_id = 3
-        let destination_airport_id = 9
+        let origin_airport_id = 16
+        let destination_airport_id = 3
         let departure_year = 2023
         let departure_month = 12
         let day_start = 21 // Defines the day of the month to start || Missing conditions for month and year change!
-        let last_day = day_start + 7 // Modify the 7 only if day_start + 7 > days in that month
-        let flight_duration = 2
-        let flight_price = 120
-        let imgJson = germany_mun
+        let last_day = day_start + 9 // Modify the 7 only if day_start + 7 > days in that month
+        let flight_duration = 5
+        let flight_price = 200
+        let imgJson = spain
 
         // let arrival_date = "2023-12-21" - Disabled. Would need to fiddle with day change. 
         // Bug example: flight takes of at 23:00 and lands at 01:00.
@@ -312,7 +313,7 @@ const massFlights = async (req, res) => {
 
         for (j = 21; j < last_day; j++) {
             departure_day = j
-            for (let i = 1; i < 24; i += 3) {
+            for (let i = 1; i < 24; i += 4) {
                 if (i + flight_duration > 24) {
                     arrival_time = (i + flight_duration) - 24
                 } else {

@@ -70,7 +70,7 @@ const login = async (req, res) => {
     const { email, password } = req.body
 
     try {
-        // Cbeck if mail exists in DB
+        // Check if mail exists in DB
         const [result] = await UserModel.selectByEmail(email)
         if (result.length === 0) {
             return res.json({ error: 'Username and password don\'t match' })
@@ -116,10 +116,11 @@ const massUsers = async (req, res) => {
     for (let user of userData) {
         try {
             // Number 5 for hashSync is how strong encription is and was set low for testing purposes.
+            console.log(user.password)
             user.password = bcrypt.hashSync(user.password, 5)
 
             addedUsersArr.push(user)
-            await UserModel.insertUser(user)
+            // await UserModel.insertUser(user)
 
         } catch (error) {
             res.json({ error: error.message })

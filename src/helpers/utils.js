@@ -2,6 +2,8 @@ const dayjs = require('dayjs')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 
+require('dotenv').config();
+
 const createToken = (user) => {
     const payload = {
         user_id: user.id,
@@ -18,7 +20,7 @@ const getTransporter = () => {
         secure: true,
         auth: {
             user: "flightifyairlines@gmail.com",
-            pass: "",
+            pass: process.env.EMAIL_KEY,
         },
     });
     return transporter

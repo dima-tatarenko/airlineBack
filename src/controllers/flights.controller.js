@@ -143,7 +143,7 @@ const editFlightById = async (req, res) => {
 
     const [editedFlight] = await FlightModel.selectById(flightId)
 
-    const [emailObjArr] = await UserModel.selectEmailsById(118)
+    const [emailObjArr] = await UserModel.selectEmailsById(flightId)
     const emailArr = []
 
     for (let email of emailObjArr) {
@@ -189,7 +189,7 @@ const bookFlight = async (req, res) => {
             await FlightModel.insertBooking(return_id, reservation)
         }
 
-        const [emailObjArr] = await UserModel.selectEmailById(118, 13)
+        const [emailObjArr] = await UserModel.selectEmailById(req.body[0].outbound_id, req.body[0].users_id)
         const emailArr = []
 
         for (let email of emailObjArr) {
